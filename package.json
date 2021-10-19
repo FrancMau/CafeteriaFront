@@ -1,0 +1,32 @@
+{
+  "name": "cafeteriafront",
+  "version": "1.0.0",
+  "description": "Usando SASS y Gulp!",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChesterMau/CafeteriaFront.git"
+  },
+  "author": "Franco Ezequiel Mauro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChesterMau/CafeteriaFront/issues"
+  },
+  "homepage": "https://github.com/ChesterMau/CafeteriaFront#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.3.7",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.0.0",
+    "gulp-watch": "^5.0.1",
+    "postcss": "^8.3.9",
+    "sass": "^1.43.2"
+  },
+  "bowserslist": [
+    "last 1 version",
+    "> 1%"
+  ]
+}
