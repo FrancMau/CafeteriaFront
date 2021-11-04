@@ -1,8 +1,10 @@
-var { src, dest, watch, series, parallel } = require('gulp');
+var { src, dest, watch, series } = require('gulp');
 var sass = require('gulp-sass')(require('sass'));
 var postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-
+var autoprefixer = require('autoprefixer');
+var imagemin = require('gulp-imagemin');
+var webp = require('gulp-webp');
+var avif = require('gulp-avif');
 
 function css(done) {
     src('src/scss/*.scss')
@@ -13,14 +15,43 @@ function css(done) {
 done();
 }
 
+function img (done) {
+    src('imagenes/**/*')
+    .pipe(imagemin({optimizationLevel: 3}))
+    .pipe(dest('src/img'));
+done();
+}
+
+function imgwebp () {
+    var options ={
+        quality: 50
+    }
+    return src('imagenes/**/*.{jpg,png}')
+    .pipe ( webp(options) )
+    .pipe(dest('src/img'))   
+}
+
+function imgavif () {
+    var options ={
+        quality: 50
+    }
+    return src('imagenes/**/*.{jpg,png}')
+    .pipe(avif(options))
+    .pipe(dest('src/img'))
+}
+
 function see() {
     watch ('src/scss/**/*.scss', css);
+    watch ('imagenes/**/*', img)
 }
 
 
 exports.css=css;
 exports.see=see;
-exports.default = series(css,see);
+exports.img = img;
+exports.imgwebp = imgwebp;
+exports.imgavif = imgavif;
+exports.default = series(img,imgwebp,imgavif,css,see);
 
 
 // const gulp = require('gulp');
